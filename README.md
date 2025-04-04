@@ -17,7 +17,7 @@
             <img src="https://img.shields.io/github/repo-size/MoshPitCodes/devkit?color=B16286&labelColor=282828&style=for-the-badge&logo=github&logoColor=B16286">
          </a>
          <a href="https://go.dev/">
-             <img src="https://img.shields.io/badge/Go-1.22+-blue.svg?style=for-the-badge&labelColor=282828&logo=Go&logoColor=00ADD8&color=00ADD8">
+             <img src="https://img.shields.io/badge/Go-1.24+-blue.svg?style=for-the-badge&labelColor=282828&logo=Go&logoColor=00ADD8&color=00ADD8">
          </a>
          <a href="https://github.com/moshpitcodes/devkit/blob/main/LICENSE"> <!-- Adjust URL -->
             <img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=Apache&colorA=282828&colorB=98971A&logo=unlicense&logoColor=98971A&"/>
@@ -49,15 +49,13 @@ The long-term vision is to expand `devkit` into a unified control plane for data
         <br>
     </div>
 </h1>
+
 <br/>
 
 ## 🗃️ Project Structure
 
 ```
  .
-├──  bin
-│   ├──  devkit
-│   └──  devkitd
 ├──  certs
 ├──  cmd
 │   ├──  devkit
@@ -79,12 +77,10 @@ The long-term vision is to expand `devkit` into a unified control plane for data
 │   ├──  db
 │   ├──  k8s
 │   └──  observe
-├──  findings.md
 ├──  go.mod
 ├──  go.sum
 ├──  LICENSE
 ├──  Makefile
-├──  mermaid.md
 └── 󰂺 README.md
 ```
 

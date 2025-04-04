@@ -1,0 +1,52 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+bin/
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Dependency directories
+vendor/
+
+# Go workspace file
+go.work
+go.work.sum
+
+# Environment variables
+.env*
+!.env.example
+
+# Build output
+/build
+/dist
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+.cursor
+
+# Mac OS
+.DS_Store
+
+# Log files
+*.log
+
+# Temporary files
+tmp/
+temp/
+
+# Generated files
+proto/v1/*.pb.go
+
+# Local configuration
+.env
+.env.local

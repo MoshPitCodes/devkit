@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 180">
+  <!-- Reduced-height background rectangle -->
+  <rect x="5" y="5" width="390" height="170" rx="15" fill="#282828" />
+  
+  <!-- Logo container for positioning both elements together -->
+  <g transform="translate(200, 90)">
+    <!-- Kubernetes wheel - sized to match text height, moved to the left -->
+    <g transform="translate(-120, 0) scale(0.6)">
+      <circle cx="0" cy="0" r="70" fill="none" stroke="#458588" stroke-width="4" />
+      <circle cx="0" cy="0" r="20" fill="#458588" />
+      
+      <!-- Spokes -->
+      <g stroke="#458588" stroke-width="4">
+        <line x1="0" y1="-70" x2="0" y2="-95" />
+        <line x1="49.5" y1="-49.5" x2="67.2" y2="-67.2" />
+        <line x1="70" y1="0" x2="95" y2="0" />
+        <line x1="49.5" y1="49.5" x2="67.2" y2="67.2" />
+        <line x1="0" y1="70" x2="0" y2="95" />
+        <line x1="-49.5" y1="49.5" x2="-67.2" y2="67.2" />
+        <line x1="-70" y1="0" x2="-95" y2="0" />
+        <line x1="-49.5" y1="-49.5" x2="-67.2" y2="-67.2" />
+      </g>
+      
+      <!-- Outer dots -->
+      <circle cx="0" cy="-95" r="8" fill="#FABD2F" />
+      <circle cx="67.2" cy="-67.2" r="8" fill="#FABD2F" />
+      <circle cx="95" cy="0" r="8" fill="#FABD2F" />
+      <circle cx="67.2" cy="67.2" r="8" fill="#FABD2F" />
+      <circle cx="0" cy="95" r="8" fill="#FABD2F" />
+      <circle cx="-67.2" cy="67.2" r="8" fill="#FABD2F" />
+      <circle cx="-95" cy="0" r="8" fill="#FABD2F" />
+      <circle cx="-67.2" cy="-67.2" r="8" fill="#FABD2F" />
+    </g>
+    
+    <!-- devkit text - positioned with small gap to the wheel to prevent overlap -->
+    <text x="-45" y="15" font-family="'JetBrains Mono', monospace" font-size="60" font-weight="700" fill="#EBDBB2">devkit</text>
+  </g>
+</svg>

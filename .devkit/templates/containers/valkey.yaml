@@ -1,0 +1,16 @@
+# Template definition for 'valkey'
+image: valkey/valkey:7.2 # Use the official Valkey image
+ports:
+    - '6379:6379' # Default Valkey port
+volumes:
+    # Path relative to .devkit/volumes/ as resolved by agent
+    - './valkeydata:/data' # Persist data
+restartPolicy: always # Keep store running
+resources:
+    memory: '128m'
+    cpu: '0.25'
+# environment:
+#   Add any specific Valkey environment variables if needed
+# command:
+#   Add any specific startup commands if needed (e.g., --requirepass)
+# networkMode: host

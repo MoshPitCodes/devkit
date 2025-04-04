@@ -1,0 +1,80 @@
+name: Build Binaries
+
+on:
+  push:
+    branches: [ main ]
+  pull_request: # Also build on PRs to check compilation
+    branches: [ main ]
+
+jobs:
+  build:
+    # Name the job with the target platform
+    name: Build for ${{ matrix.goos }}/${{ matrix.goarch }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false # Don't cancel other jobs in the matrix if one fails
+      matrix:
+        # Define the target platforms (OS and Architecture)
+        goos: [linux, darwin, windows]
+        goarch: [amd64, arm64]
+        # Exclude combinations that are less common or not needed
+        exclude:
+          - goos: windows # Windows on ARM64 is less common target for CLI tools
+            goarch: arm64
+          # - goos: linux # You could exclude linux/arm64 if not needed
+          #   goarch: arm64
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          # Use the Go version specified in your go.mod or README
+          go-version: '1.22'
+          # Enable build caching for faster builds
+          cache: true
+
+      - name: Build Binaries
+        # Set environment variables for cross-compilation
+        env:
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
+          # Disable CGO for simpler cross-compilation, unless your project requires it
+          CGO_ENABLED: 0
+        run: |
+          # Create an output directory for the binaries
+          mkdir -p dist
+
+          # Determine the output file suffix (.exe for windows)
+          OUT_SUFFIX=""
+          if [ "${{ matrix.goos }}" == "windows" ]; then
+            OUT_SUFFIX=".exe"
+          fi
+
+          # Build the devkit CLI tool
+          echo "Building devkit for ${{ matrix.goos }}/${{ matrix.goarch }}..."
+          # Use -trimpath and ldflags to create smaller, more reproducible binaries
+          go build -v -trimpath -ldflags="-s -w" \
+            -o ./dist/devkit-${{ matrix.goos }}-${{ matrix.goarch }}${OUT_SUFFIX} \
+            ./cmd/devkit
+
+          # Build the devkitd agent daemon
+          echo "Building devkitd for ${{ matrix.goos }}/${{ matrix.goarch }}..."
+          go build -v -trimpath -ldflags="-s -w" \
+            -o ./dist/devkitd-${{ matrix.goos }}-${{ matrix.goarch }}${OUT_SUFFIX} \
+            ./cmd/devkitd
+
+      - name: Upload Binaries Artifact
+        # Upload the built binaries as a workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          # Name the artifact specific to the platform
+          name: devkit-binaries-${{ matrix.goos }}-${{ matrix.goarch }}
+          # Upload all files from the dist directory for this job's platform
+          path: ./dist/*
+          # Fail the workflow if the build step didn't produce any files
+          if-no-files-found: error
+          # Set retention days (optional, default is 90)
+          # retention-days: 7

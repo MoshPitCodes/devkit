@@ -1,0 +1,14 @@
+# Template definition for 'mysql'
+image: mysql:8.0 # Using version 8.0 as an example
+ports:
+    - '3306:3306'
+environment:
+    MYSQL_ROOT_PASSWORD: 'admin' # Set a default root password
+volumes:
+    # Path relative to .devkit/volumes/ as resolved by agent
+    - './mysqldata:/var/lib/mysql'
+restartPolicy: always
+# Optional resource limits (uncomment and adjust if needed)
+# resources:
+#   memory: '1g'
+#   cpu: '1.0'

@@ -1,0 +1,14 @@
+# Template definition for 'redis'
+image: redis:7-alpine # Using alpine for smaller size
+ports:
+    - '6379:6379'
+restartPolicy: always # Keep cache running
+# Optional resource limits (uncomment and adjust if needed)
+# resources:
+#   memory: '256m'
+#   cpu: '0.25'
+# volumes:
+#   - redis_data:/data
+# environment:
+#   ALLOW_EMPTY_PASSWORD: "yes"
+# networkMode: host

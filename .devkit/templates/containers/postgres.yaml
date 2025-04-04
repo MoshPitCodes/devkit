@@ -1,0 +1,16 @@
+# Template definition for 'postgres'
+image: postgres:16-alpine
+ports:
+    - '5432:5432' # Note: Quoting ports might be safer YAML
+environment:
+    # Note: Keys should ideally be uppercase here for compatibility
+    POSTGRES_PASSWORD: 'admin'
+    POSTGRES_HOST_AUTH_METHOD: 'trust'
+volumes:
+    # Path relative to .devkit/volumes/ as resolved by agent
+    - './pgdata:/var/lib/postgresql/data'
+restartPolicy: always # Keep database running
+resources:
+    memory: '512m'
+    cpu: '0.5'
+# networkMode: host # Optional example

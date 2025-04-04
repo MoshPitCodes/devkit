@@ -1,0 +1,42 @@
+# Default devkit Configuration
+# This file allows you to customize devkit's behavior for this project.
+# Settings here override global user settings (~/.config/devkit/config.yaml)
+# and environment variables (DEVKIT_...).
+
+# agent:
+#   # Override the default Unix socket path for the agent
+#   socketPath: /tmp/devkitd.sock
+#   # Log level for the agent process
+#   # Options: debug, info, warn, error
+#   # logLevel: info
+
+# cli:
+#   # Default timeout in seconds for CLI commands connecting to the agent
+#   defaultTimeoutSeconds: 60
+#   # Log level for the CLI process
+#   # Options: debug, info, warn, error
+#   # logLevel: warn
+
+# # Default location for container template YAML files
+# templateDirectory: .devkit/templates
+
+# --- Future Configuration Examples ---
+
+# kubernetes:
+#   # Default context to use for 'devkit k8s' commands
+#   # context: docker-desktop
+#   # Default namespace
+#   # namespace: default
+#   # Path to kubeconfig file (uses default resolution if not set)
+#   # kubeconfig: ~/.kube/config
+
+# database:
+#   # Default connection details (can be overridden by templates or flags)
+#   # defaultUser: myuser
+#   # defaultPasswordEnvVar: MYAPP_DB_PASSWORD # Name of env var holding password
+
+# observability:
+#   # Default endpoint for pushing traces (e.g., Jaeger, Tempo)
+#   # tracingEndpoint: http://localhost:4318/v1/traces
+#   # Default endpoint for Prometheus metrics scraping
+#   # metricsScrapeTarget: http://localhost:9090

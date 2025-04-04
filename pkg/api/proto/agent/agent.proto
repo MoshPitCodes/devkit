@@ -1,0 +1,148 @@
+syntax = "proto3";
+
+package agent;
+
+option go_package = ".;agent";
+
+// AgentService provides methods for interacting with the devkit agent.
+service AgentService {
+  // Ping checks if the agent is responsive.
+  rpc Ping(PingRequest) returns (PingResponse);
+
+  // StartContainer starts a container based on the provided configuration.
+  rpc StartContainer(StartContainerRequest) returns (StartContainerResponse);
+
+  // ListContainers lists containers managed by devkit.
+  rpc ListContainers(ListContainersRequest) returns (ListContainersResponse);
+
+  // StopContainer stops a container managed by devkit.
+  rpc StopContainer(StopContainerRequest) returns (StopContainerResponse);
+
+  // RemoveContainer removes a container managed by devkit.
+  rpc RemoveContainer(RemoveContainerRequest) returns (RemoveContainerResponse);
+
+  // LogsContainer streams logs from a container managed by devkit.
+  rpc LogsContainer(LogsContainerRequest) returns (stream LogsContainerResponse);
+
+  // RefreshTemplates signals the agent to acknowledge template refresh (no-op for now).
+  rpc RefreshTemplates(RefreshTemplatesRequest) returns (RefreshTemplatesResponse);
+
+  // Shutdown gracefully stops the agent server.
+  rpc Shutdown(ShutdownRequest) returns (ShutdownResponse);
+
+  // StopAgent requests the agent process to shut down.
+  rpc StopAgent(StopAgentRequest) returns (StopAgentResponse);
+}
+
+message PingRequest {}
+
+message PingResponse {
+  string message = 1;
+}
+
+// --- StartContainer ---
+
+message StartContainerRequest {
+  string template_name = 1; // Name of the template being used (for naming)
+  string image = 2;
+  repeated string ports = 3; // Format: ["host:container", ...]
+  repeated string volumes = 4; // Format: ["host:container", ...]
+  map<string, string> environment = 5; // Key-value pairs
+  repeated string command = 6; // Command to run
+  string network_mode = 7; // e.g., "bridge", "host", "none"
+  Resources resources = 8; // Resource limits
+  string restart_policy = 9; // e.g., "no", "always", "on-failure"
+}
+
+// Nested message for resource limits
+message Resources {
+  string memory = 1; // e.g., "512m", "1g"
+  string cpu = 2; // e.g., "0.5", "1"
+}
+
+message StartContainerResponse {
+  string container_id = 1;
+  string message = 2; // e.g., "Container devkit-redis started successfully"
+}
+
+// --- ListContainers ---
+
+message ListContainersRequest {
+  // Future: Add filters (e.g., by status, name pattern)
+}
+
+message ContainerInfo {
+  string id = 1; // Short container ID
+  string name = 2; // Container name (e.g., devkit-redis)
+  string image = 3; // Image used
+  string status = 4; // Status (e.g., running, exited)
+  repeated string ports = 5; // Published ports (e.g., "host:container/proto")
+}
+
+message ListContainersResponse {
+  repeated ContainerInfo containers = 1;
+}
+
+// --- StopContainer ---
+
+message StopContainerRequest {
+  string id = 1; // ID or Name of the container to stop
+  // TODO: Add timeout field?
+}
+
+message StopContainerResponse {
+  string message = 1; // e.g., "Container devkit-redis stopped successfully"
+}
+
+// --- RemoveContainer ---
+
+message RemoveContainerRequest {
+  string id = 1; // ID or Name of the container to remove
+  bool force = 2; // Whether to force remove a running container
+  // TODO: Add option to remove associated volumes?
+}
+
+message RemoveContainerResponse {
+  string message = 1; // e.g., "Container devkit-redis removed successfully"
+}
+
+// --- LogsContainer ---
+
+message LogsContainerRequest {
+  string id = 1; // ID or Name of the container
+  bool follow = 2; // Stream logs continuously
+  string tail = 3; // Number of lines to show from end (e.g., "100", "all")
+  bool timestamps = 4; // Show timestamps
+}
+
+message LogsContainerResponse {
+  bytes line = 1; // A single line of log output (stdout or stderr)
+}
+
+// --- RefreshTemplates ---
+
+message RefreshTemplatesRequest {}
+
+message RefreshTemplatesResponse {
+  string message = 1;
+}
+
+// --- Shutdown ---
+
+message ShutdownRequest {}
+
+message ShutdownResponse {
+  string message = 1;
+}
+
+// Request message for stopping the agent.
+message StopAgentRequest {
+  // If true, perform an immediate shutdown rather than graceful.
+  bool force = 1;
+}
+
+// Response message for stopping the agent.
+message StopAgentResponse {
+  // Confirmation message.
+  string message = 1;
+}

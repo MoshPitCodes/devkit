@@ -11,10 +11,10 @@
       <div align="center">
          <!-- Placeholder Badges - Update URLs/User/Repo as needed -->
          <a href="https://github.com/moshpitcodes/devkit/stargazers"> <!-- Adjust URL -->
-            <img src="https://img.shields.io/github/stars/MoshPitCodes/devkit?color=FABD2F&labelColor=282828&style=for-the-badge&logo=starship&logoColor=FABD2F">
+            <img src="https://img.shields.io/github/stars/moshpitcodes/devkit?color=FABD2F&labelColor=282828&style=for-the-badge&logo=starship&logoColor=FABD2F">
          </a>
          <a href="https://github.com/moshpitcodes/devkit/"> <!-- Adjust URL -->
-            <img src="https://img.shields.io/github/repo-size/MoshPitCodes/devkit?color=B16286&labelColor=282828&style=for-the-badge&logo=github&logoColor=B16286">
+            <img src="https://img.shields.io/github/repo-size/moshpitcodes/devkit?color=B16286&labelColor=282828&style=for-the-badge&logo=github&logoColor=B16286">
          </a>
          <a href="https://go.dev/">
              <img src="https://img.shields.io/badge/Go-1.24+-blue.svg?style=for-the-badge&labelColor=282828&logo=Go&logoColor=00ADD8&color=00ADD8">
@@ -236,7 +236,7 @@ flowchart TD
 Clone the repository and use `make` to build the binaries:
 
 ```bash
-git clone https://github.com/MoshPitCodes/devkit.git # Adjust URL if needed
+git clone https://github.com/moshpitcodes/devkit.git # Adjust URL if needed
 cd devkit
 make clean && make all
 # The binaries will be in the ./bin directory
@@ -521,7 +521,7 @@ sequenceDiagram
 <br/>
 
 <!-- Placeholder Star History - Update URL -->
-<p align="center"><img src="https://api.star-history.com/svg?repos=MoshPitCodes/devkit&type=Timeline&theme=dark" /></p>
+<p align="center"><img src="https://api.star-history.com/svg?repos=moshpitcodes/devkit&type=Timeline&theme=dark" /></p>
 
 <br/>
 

@@ -225,7 +225,7 @@ flowchart TD
 
 ## 1. Prerequisites
 
-*   **Go:** Version 1.22 or later required for building.
+*   **Go:** Version 1.24 or later required for building.
 *   **Make:** For using the build commands in the `Makefile`.
 *   **Docker:** A running Docker engine is required for container operations.
 *   **k3d:** Required *only* if using the `devkit k8s` commands. Install from [k3d.io](https://k3d.io/).

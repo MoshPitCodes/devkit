@@ -56,7 +56,6 @@ The long-term vision is to expand `devkit` into a unified control plane for data
 
 ```
  .
-├──  certs
 ├──  cmd
 │   ├──  devkit
 │   └──  devkitd
